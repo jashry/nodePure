@@ -2,6 +2,7 @@ const http = require("http");
 const url = require("url");
 const fs = require("fs");
 const path = require("path");
+const multiparty = require('multiparty')
 const configlobal = require("./configlobal");
 
 const fileSev = http.createServer((req, res) => {
@@ -25,13 +26,22 @@ function main(req, res) {
             });
         } else if (req.method == "POST") {
             console.log("POST happened");
-            let buffers = [];
-            req.on("data", buffer => {
-                buffers.push(buffer);
-            });
-            req.on("end", () => {
-                console.log(buffers.toString());
-            });
+
+            let form = new multiparty.Form({
+                uploadDir:'./upload'})
+            form.parse(req)
+            form.on('field',(name,value)=>{
+                console.log('字段：',name,value);
+            })
+
+            form.on('file',(name,value)=>{
+                console.log('文件字段：',name,value);
+            })
+            form.on('close',()=>{
+                console.log('upload');
+                res.write('upload finish')
+                res.end()
+            })
         }
     }
 }
