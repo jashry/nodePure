@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>test of socket</title>
+</head>
+<body>
+  <h3>socket 测试</h3>
+  <script src="http://localhost:231/socket.io/socket.io.js"></script>
+  <script>
+    let sock = io.connect('ws://localhost:231')
+    sock.emit('comit','so so funny')
+    sock.on('sermit', msg =>{
+      console.log(msg)
+    })
+  </script>
+</body>
+</html>

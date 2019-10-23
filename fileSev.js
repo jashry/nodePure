@@ -30,6 +30,7 @@ function main(req, res) {
             let form = new multiparty.Form({
                 uploadDir:'./upload'})
             form.parse(req)
+            
             form.on('field',(name,value)=>{
                 console.log('字段：',name,value);
             })
