@@ -2,7 +2,7 @@ const http = require("http");
 const url = require("url");
 const fs = require("fs");
 const path = require("path");
-const multiparty = require('multiparty')
+const multiparty = require("multiparty");
 const configlobal = require("./configlobal");
 
 const fileSev = http.createServer((req, res) => {
@@ -17,8 +17,8 @@ function main(req, res) {
             console.log("GET happened");
             fs.readFile("./static/" + "upfile.html", (err, data) => {
                 if (err) {
-                  console.log(err);
-                  return false
+                    console.log(err);
+                    return false;
                 } else {
                     res.write(data);
                     res.end();
@@ -27,22 +27,21 @@ function main(req, res) {
         } else if (req.method == "POST") {
             console.log("POST happened");
 
-            let form = new multiparty.Form({
-                uploadDir:'./upload'})
-            form.parse(req)
-            
-            form.on('field',(name,value)=>{
-                console.log('字段：',name,value);
-            })
+            let form = new multiparty.Form({ uploadDir: "./upload" });
+            form.parse(req);
 
-            form.on('file',(name,value)=>{
-                console.log('文件字段：',name,value);
-            })
-            form.on('close',()=>{
-                console.log('upload');
-                res.write('upload finish')
-                res.end()
-            })
+            form.on("field", (name, value) => {
+                console.log("字段：", name, value);
+            });
+
+            form.on("file", (name, value) => {
+                console.log("文件字段：", name, value);
+            });
+            form.on("close", () => {
+                console.log("upload");
+                res.write("upload finish");
+                res.end();
+            });
         }
     }
 }

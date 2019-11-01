@@ -18,9 +18,9 @@ io.on("connection", client => {
     client.on("comit", mdata => {
         console.log("talk with client on comit", mdata);
     });
-    setInterval(()=>{
-      client.emit("sermit", `this msg is from server ${Date.now()}`);      
-    },1600)
+    setInterval(() => {
+        client.emit("sermit", `this msg is from server ${Date.now()}`);
+    }, 1600);
     client.on("disconnect", () => {
         console.log("client is disconnected");
     });

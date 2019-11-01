@@ -19,11 +19,11 @@ let buf = new Buffer("asbs/r/nasdfes/r/n45s1df23s5d4f/r/n32135q233q2w4d");
 console.log(buf.indexOf("/r/n"));
 
 let arr = [];
-let n = 0
-while ((n = buf.indexOf("/r/n") )!== -1) {
-  arr.push(buf.slice(0,n))
-  buf = buf.slice(n+'/r/n'.length)
+let n = 0;
+while ((n = buf.indexOf("/r/n")) !== -1) {
+    arr.push(buf.slice(0, n));
+    buf = buf.slice(n + "/r/n".length);
 }
-    
-arr.push(buf)
-console.log(arr)
+
+arr.push(buf);
+console.log(arr);

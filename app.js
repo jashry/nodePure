@@ -1,7 +1,7 @@
 const http = require("http");
 const fs = require("fs");
 const url = require("url");
-const querystring = require('querystring')
+const querystring = require("querystring");
 
 const main = (req, res) => {
     if (req.method == "GET") {
@@ -16,7 +16,7 @@ const main = (req, res) => {
             }
         });
     } else if (req.method == "POST") {
-        console.log("pathname: ",req.pathname);
+        console.log("pathname: ", req.pathname);
         let buffers = [];
         req.on("data", buffer => {
             buffers.push(buffer);
